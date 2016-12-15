@@ -1,3 +1,4 @@
 'atom-workspace':
-  'cmd-b': 'nuclide-task-runner:Buck-build'
+  # Disabled because it conflicts with Nuclide's cmd-b b, cmd-b t, and other keybindings.
+  #'cmd-b': 'nuclide-task-runner:Buck-build'
   'alt-cmd-b': 'nuclide-task-runner:toggle-Buck-toolbar'
