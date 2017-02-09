@@ -1,5 +1,2 @@
-# Attach to a tmux session.
-if [[ $HOSTNAME == *"facebook.com" ]]; then
-  [[ $TERM != "screen" ]] && exec tmux attach
-fi
-
+# Disable printing of legal info.
+alias gdb='gdb -q'
