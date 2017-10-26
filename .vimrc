@@ -1,3 +1,6 @@
+" Show (partial) command in the status bar.
+set showcmd
+
 " Wrap at line boundaries.
 set whichwrap+=<,>,h,l,[,]
 
