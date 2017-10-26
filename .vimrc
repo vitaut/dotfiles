@@ -12,3 +12,6 @@ set ruler
 
 " Enable syntax highlighting.
 syntax on
+
+" Add fuzzy finder to runtime path.
+set rtp+=~/.fzf
