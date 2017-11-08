@@ -10,6 +10,11 @@ set hlsearch
 " Display the status bar (ruler).
 set ruler
 
+set textwidth=80
+
+" Show a vertical line after textwidth.
+set colorcolumn=+1
+
 " Enable syntax highlighting.
 syntax on
 
