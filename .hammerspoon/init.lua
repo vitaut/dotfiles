@@ -1,11 +1,11 @@
 spaces = require("hs._asm.undocumented.spaces")
 
 local chrome = "Google Chrome"
+local outlook = "Microsoft Outlook"
 
 -- TODO: create a grid layout: Atom to the left, console to the right when
 --       external monitor is connected
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "P", function()
-  local outlook = "Microsoft Outlook"
   for _, app in pairs({chrome, outlook}) do
     hs.application.launchOrFocus(app)
   end
@@ -16,6 +16,58 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "P", function()
   }
   hs.layout.apply(windowLayout)
 end)
+
+-- Laptop layout: all windows maximized.
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
+  for _, appName in pairs({chrome, outlook}) do
+    local app = hs.appfinder.appFromName(appName)
+    app:activate()
+    app:mainWindow():setFullscreen(true)
+  end
+end)
+
+local appEvents = hs.application.watcher
+
+-- Convert an application event to string.
+function eventToString(event)
+  if event == appEvents.activated then
+    return "activated"
+  elseif event == appEvents.deactivated then
+    return "deactivated"
+  elseif event == appEvents.launching then
+    return "launching"
+  elseif event == appEvents.launched then
+    return "launched"
+  end
+  return event
+end
+
+-- Facebook bunny search
+bunnyKey = hs.hotkey.bind({"cmd"}, "I", function()
+  hs.application.launchOrFocus(chrome)
+  hs.eventtap.keyStroke({"cmd"}, "L")
+  hs.eventtap.keyStrokes("b ")
+end)
+bunnyKey:disable()
+
+-- Make Chrome start in fullscreen.
+function watchApp(name, event, app)
+  if name ~= chrome then
+    return
+  end
+  window = app:mainWindow()
+  print(eventToString(event), app, window)
+  if event == appEvents.launched then
+    window:setFullscreen(true)
+  elseif event == appEvents.activated then
+    bunnyKey:enable()
+  elseif event == appEvents.deactivated then
+    bunnyKey:disable()
+  end
+end
+
+appWatcher = hs.application.watcher.new(watchApp)
+appWatcher:start()
 
 -- Automatically reload config when the config file changes.
 function reloadConfig(files)
@@ -36,13 +88,6 @@ hs.alert.show("Config loaded")
 -- Override paste blocking
 hs.hotkey.bind({"cmd", "alt"}, "V",
   function() hs.eventtap.keyStrokes(hs.pasteboard.getContents()) end)
-
--- Facebook bunny search
-hs.hotkey.bind({"cmd"}, "I", function()
-  hs.application.launchOrFocus(chrome)
-  hs.eventtap.keyStroke({"cmd"}, "L")
-  hs.eventtap.keyStrokes("b ")
-end)
 
 -- VPN connect/disconnect dialog
 local chooser = nil
