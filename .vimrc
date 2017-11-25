@@ -15,6 +15,9 @@ set textwidth=80
 " Show a vertical line after textwidth.
 set colorcolumn=+1
 
+" Show autocomplete menu.
+set wildmode=longest,list
+
 " Enable syntax highlighting.
 syntax on
 
