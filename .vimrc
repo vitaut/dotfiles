@@ -29,6 +29,11 @@ syntax on
 set rtp+=~/.fzf
 
 " ---------------------------------------------------------------------------- "
+" Install Vundle.
+if !filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
+  !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
+endif
+
 " Required by Vundle.
 set nocompatible
 filetype off
@@ -40,7 +45,7 @@ call vundle#begin()
 " Let Vundle manage Vundle, required.
 Plugin 'VundleVim/Vundle.vim'
 
-" All of your Plugins must be added before the following line
+" All of plugins must be added before the following line.
 call vundle#end()
-filetype plugin indent oni
+filetype plugin indent on
 " ---------------------------------------------------------------------------- "
