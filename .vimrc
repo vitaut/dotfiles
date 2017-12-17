@@ -17,7 +17,8 @@ set textwidth=80
 set colorcolumn=+1
 
 " Show autocomplete list.
-set wildmode=longest,list
+set wildmenu
+set wildmode=longest:list,full
 
 " Increase command history size.
 set history=200
@@ -28,8 +29,14 @@ syntax on
 " Add fuzzy finder to runtime path.
 set rtp+=~/.fzf
 
+" Use a POSIX-comliant shell (required by Vundle).
+set shell=bash
+
+" Expand '%%' to the active file directory.
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
 " ---------------------------------------------------------------------------- "
-" Install Vundle.
+" Install Vundle plug-in manager.
 if !filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
   !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 endif
@@ -44,6 +51,8 @@ call vundle#begin()
 
 " Let Vundle manage Vundle, required.
 Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Valloric/YouCompleteMe'
 
 " All of plugins must be added before the following line.
 call vundle#end()
