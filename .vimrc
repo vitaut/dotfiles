@@ -27,3 +27,20 @@ syntax on
 
 " Add fuzzy finder to runtime path.
 set rtp+=~/.fzf
+
+" ---------------------------------------------------------------------------- "
+" Required by Vundle.
+set nocompatible
+filetype off
+
+" Set the runtime path to include Vundle and initialize.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage Vundle, required.
+Plugin 'VundleVim/Vundle.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent oni
+" ---------------------------------------------------------------------------- "
