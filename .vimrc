@@ -7,6 +7,9 @@ set whichwrap+=<,>,h,l,[,]
 " Highlight search results.
 set hlsearch
 
+" Remove search highlight on Ctrl-l.
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 " Display the status bar (ruler).
 set ruler
 
@@ -53,6 +56,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'tpope/vim-projectionist'
 
 " All of plugins must be added before the following line.
 call vundle#end()
