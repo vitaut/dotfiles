@@ -7,6 +7,9 @@ set whichwrap+=<,>,h,l,[,]
 " Highlight search results.
 set hlsearch
 
+" Enable incremental search.
+set incsearch
+
 " Remove search highlight on Ctrl-l.
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
