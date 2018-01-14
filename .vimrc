@@ -13,6 +13,19 @@ set incsearch
 " Remove search highlight on Ctrl-l.
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
+" Remap * to search for the selected text instead of the current word.
+xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+
+" Remap # to search for the selected text backwards.
+xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+function! s:VSetSearch(cmdtype)
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+
 " Display the status bar (ruler).
 set ruler
 
