@@ -26,6 +26,10 @@ function! s:VSetSearch(cmdtype)
   let @s = temp
 endfunction
 
+" Use & to run the last substitute command with flags.
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
 " Display the status bar (ruler).
 set ruler
 
