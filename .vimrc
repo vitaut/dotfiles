@@ -36,6 +36,11 @@ set ruler
 " Limit text width.
 set textwidth=80
 
+" Use two-space indentation.
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 " Show a vertical line after textwidth.
 set colorcolumn=+1
 
@@ -48,6 +53,12 @@ set history=200
 
 " Enable syntax highlighting.
 syntax on
+
+" Run make in the build directory by default.
+let &makeprg='(cd build && make)'
+
+" Open quickfix window on make.
+autocmd QuickFixCmdPost [^l]* vert cwindow 90
 
 " Add fuzzy finder to runtime path.
 set rtp+=~/.fzf
