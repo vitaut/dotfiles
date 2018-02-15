@@ -41,8 +41,9 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" Show a vertical line after textwidth.
+" Show a vertical line after textwidth except forquickfix window.
 set colorcolumn=+1
+autocmd FileType qf setlocal colorcolumn=
 
 " Show autocomplete list.
 set wildmenu
@@ -58,7 +59,7 @@ syntax on
 let &makeprg='(cd build && make)'
 
 " Open quickfix window on make.
-autocmd QuickFixCmdPost [^l]* vert cwindow 90
+autocmd QuickFixCmdPost [^l]* vert cwindow 99
 
 " Add fuzzy finder to runtime path.
 set rtp+=~/.fzf
@@ -87,8 +88,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'tpope/vim-projectionist'
+Plugin 'tpope/vim-unimpaired'
 
 " All of plugins must be added before the following line.
 call vundle#end()
