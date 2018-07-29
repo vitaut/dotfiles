@@ -91,6 +91,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-unimpaired'
 
+" Open file:line as expected.
+Bundle 'bogado/file-line'
+
 " All of plugins must be added before the following line.
 call vundle#end()
 filetype plugin indent on
