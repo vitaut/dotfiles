@@ -1,5 +1,6 @@
 spaces = require("hs._asm.undocumented.spaces")
 
+local firefox = "Firefox"
 local chrome = "Google Chrome"
 local outlook = "Microsoft Outlook"
 
@@ -44,7 +45,7 @@ end
 
 -- Facebook bunny search
 bunnyKey = hs.hotkey.bind({"cmd"}, "I", function()
-  hs.application.launchOrFocus(chrome)
+  hs.application.launchOrFocus(firefox)
   hs.eventtap.keyStroke({"cmd"}, "L")
   hs.eventtap.keyStrokes("b ")
 end)
@@ -52,7 +53,7 @@ bunnyKey:disable()
 
 -- Make Chrome start in fullscreen.
 function watchApp(name, event, app)
-  if name ~= chrome then
+  if name ~= firefox then
     return
   end
   window = app:mainWindow()
