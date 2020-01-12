@@ -1,0 +1,7 @@
+A collection of config files and scripts
+
+Activate\ iTerm.workflow - a Quick Action to activate the iTerm application
+                           so that it can be assigned a shortcut in
+                           Keyboard / Shortcuts / Services
+
+vpn.py - a script to simplify usage of Cisco AnyConnect
