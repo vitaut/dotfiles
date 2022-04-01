@@ -7,7 +7,7 @@ import sys, tty
 
 vpn = "/opt/cisco/anyconnect/bin/vpn"
 tty.setcbreak(sys.stdin)
-out = check_output([vpn, "status"])
+out = check_output([vpn, "status"]).decode("utf-8")
 if "state: Connected" in out:
     print("Press Enter to disconnect...")
     while True:
@@ -20,6 +20,7 @@ if "state: Connected" in out:
         print("<{}>".format(key))
 else:
     print("Enter key to connect: ", end="")
+    sys.stdout.flush()
     ch = sys.stdin.read(1)
     if ord(ch) == 27:
         print()
@@ -27,8 +28,11 @@ else:
         key = ''
         while ord(ch) != 10:
             print(ch, end="")
+            sys.stdout.flush()
             key += ch
             ch = sys.stdin.read(1)
+        print()
+        sys.stdout.flush()
         p = Popen([vpn, "-s", "connect", "Americas West"], stdin=PIPE)
-        p.stdin.write(key)
+        p.stdin.write(key.encode("utf-8"))
         p.communicate()
