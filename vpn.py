@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # A wrapper around Cisco AnyConnect that simplifies using it in a terminal.
 
 from __future__ import print_function
